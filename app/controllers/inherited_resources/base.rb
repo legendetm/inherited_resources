@@ -11,7 +11,7 @@ module InheritedResources
   # By default the base class inherits from ::ApplicationController
   # This can be changed through an initializer:
   #   InheritedResources.parent_controller = "Admin::ApplicationController"
-  class Base < InheritedResources.parent_controller
+  class Base < InheritedResources.parent_controller.constantize
     # Overwrite inherit_resources to add specific InheritedResources behavior.
     def self.inherit_resources(base)
       base.class_eval do
