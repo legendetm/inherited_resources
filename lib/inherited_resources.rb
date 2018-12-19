@@ -23,6 +23,15 @@ module InheritedResources
   def self.flash_keys=(array)
     Responders::FlashResponder.flash_keys = array
   end
+
+  def self.parent_controller=(controller_klass)
+    controller_klass = controller_klass.constantize if controller_klass.is_a?(String)
+    @parent_controller = controller_klass
+  end
+
+  def self.parent_controller
+    @parent_controller ||= ::ApplicationController
+  end
 end
 
 ActiveSupport.on_load(:action_controller) do
